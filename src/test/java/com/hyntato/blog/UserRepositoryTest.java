@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 @TestMethodOrder(value = MethodOrderer.OrderAnnotation.class)
-class BlogApplicationTests {
+class UserRepositoryTest {
 
     @Autowired
     private UserRepository userRepository;
