@@ -30,14 +30,24 @@
 #                       foreign key (parent_comment_id) references comment (comment_id)
 # ) default character set utf8 collate utf8_general_ci;
 
-drop table if exists like_post;
-create table like_post (
-                      like_post_id int not null auto_increment,
-                      user_id int not null,
-                      post_id int not null,
-                      primary key (like_post_id),
-                      foreign key (user_id) references user (user_id),
-                      foreign key (post_id) references post (post_id)
+# drop table if exists like_post;
+# create table like_post (
+#                       like_post_id int not null auto_increment,
+#                       user_id int not null,
+#                       post_id int not null,
+#                       primary key (like_post_id),
+#                       foreign key (user_id) references user (user_id),
+#                       foreign key (post_id) references post (post_id)
+# ) default character set utf8 collate utf8_general_ci;
+
+drop table if exists like_comment;
+create table like_comment (
+                           like_comment_id int not null auto_increment,
+                           user_id int not null,
+                           comment_id int not null,
+                           primary key (like_comment_id),
+                           foreign key (user_id) references user (user_id),
+                           foreign key (comment_id) references comment (comment_id)
 ) default character set utf8 collate utf8_general_ci;
 
 

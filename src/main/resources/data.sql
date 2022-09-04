@@ -16,8 +16,14 @@
 # insert into comment (comment_id, user_id, post_id, parent_comment_id, content, is_deleted) values (4, 4, 4, 3, 'comment4', false);
 # insert into comment (comment_id, user_id, post_id, parent_comment_id, content, is_deleted) values (5, 5, 5, 4, 'comment5', false);
 
-insert into like_post (like_post_id, user_id, post_id) values (1, 1, 1);
-insert into like_post (like_post_id, user_id, post_id) values (2, 2, 2);
-insert into like_post (like_post_id, user_id, post_id) values (3, 3, 3);
-insert into like_post (like_post_id, user_id, post_id) values (4, 4, 4);
-insert into like_post (like_post_id, user_id, post_id) values (5, 5, 5);
+# insert into like_post (like_post_id, user_id, post_id) values (1, 1, 1);
+# insert into like_post (like_post_id, user_id, post_id) values (2, 2, 2);
+# insert into like_post (like_post_id, user_id, post_id) values (3, 3, 3);
+# insert into like_post (like_post_id, user_id, post_id) values (4, 4, 4);
+# insert into like_post (like_post_id, user_id, post_id) values (5, 5, 5);
+
+insert into like_comment (like_comment_id, user_id, comment_id) values (1, 1, 1);
+insert into like_comment (like_comment_id, user_id, comment_id) values (2, 2, 2);
+insert into like_comment (like_comment_id, user_id, comment_id) values (3, 3, 3);
+insert into like_comment (like_comment_id, user_id, comment_id) values (4, 4, 4);
+insert into like_comment (like_comment_id, user_id, comment_id) values (5, 5, 5);
