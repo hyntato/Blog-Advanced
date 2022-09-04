@@ -4,8 +4,14 @@
 # insert into user (user_id, name, email) values (4, 'user4', 'user4@gmail.com');
 # insert into user (user_id, name, email) values (5, 'user5', 'user5@gmail.com');
 
-insert into post (post_id, user_id, title, content) values (1, 1, 'post1', 'content1');
-insert into post (post_id, user_id, title, content) values (2, 2, 'post2', 'content2');
-insert into post (post_id, user_id, title, content) values (3, 3, 'post3', 'content3');
-insert into post (post_id, user_id, title, content) values (4, 4, 'post4', 'content4');
-insert into post (post_id, user_id, title, content) values (5, 5, 'post5', 'content5');
+# insert into post (post_id, user_id, title, content) values (1, 1, 'post1', 'content1');
+# insert into post (post_id, user_id, title, content) values (2, 2, 'post2', 'content2');
+# insert into post (post_id, user_id, title, content) values (3, 3, 'post3', 'content3');
+# insert into post (post_id, user_id, title, content) values (4, 4, 'post4', 'content4');
+# insert into post (post_id, user_id, title, content) values (5, 5, 'post5', 'content5');
+
+insert into comment (comment_id, user_id, post_id, parent_comment_id, content, is_deleted) values (1, 1, 1, 1, 'comment1', false);
+insert into comment (comment_id, user_id, post_id, parent_comment_id, content, is_deleted) values (2, 2, 2, 1, 'comment2', false);
+insert into comment (comment_id, user_id, post_id, parent_comment_id, content, is_deleted) values (3, 3, 3, 2, 'comment3', false);
+insert into comment (comment_id, user_id, post_id, parent_comment_id, content, is_deleted) values (4, 4, 4, 3, 'comment4', false);
+insert into comment (comment_id, user_id, post_id, parent_comment_id, content, is_deleted) values (5, 5, 5, 4, 'comment5', false);
