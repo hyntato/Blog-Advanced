@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @NoArgsConstructor
-public class LikePost {
+public class LikePost extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

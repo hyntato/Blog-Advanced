@@ -28,8 +28,8 @@
 # insert into like_comment (like_comment_id, user_id, comment_id) values (4, 4, 4);
 # insert into like_comment (like_comment_id, user_id, comment_id) values (5, 5, 5);
 
-insert into hit (hit_id, post_id, count) values (1, 1, 1);
-insert into hit (hit_id, post_id, count) values (2, 2, 2);
-insert into hit (hit_id, post_id, count) values (3, 3, 3);
-insert into hit (hit_id, post_id, count) values (4, 4, 4);
-insert into hit (hit_id, post_id, count) values (5, 5, 5);
+# insert into hit (hit_id, post_id, count) values (1, 1, 1);
+# insert into hit (hit_id, post_id, count) values (2, 2, 2);
+# insert into hit (hit_id, post_id, count) values (3, 3, 3);
+# insert into hit (hit_id, post_id, count) values (4, 4, 4);
+# insert into hit (hit_id, post_id, count) values (5, 5, 5);

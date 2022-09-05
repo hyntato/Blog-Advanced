@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @NoArgsConstructor
-public class Comment {
+public class Comment extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,4 +42,12 @@ public class Comment {
         this.content = content;
         this.is_deleted = is_deleted;
     }
+
+    public Comment(User user, Post post, String content, boolean is_deleted) {
+        this.user = user;
+        this.post = post;
+        this.content = content;
+        this.is_deleted = is_deleted;
+    }
+
 }

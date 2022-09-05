@@ -32,31 +32,43 @@ public class HitRepositoryTest {
 
     @Test
     @Order(1)
+    public void createHit() {
+        User user = new User("hyntato", "hyntato@gamil.com");
+        User savedUser = userRepository.save(user);
+
+        Post post = new Post(user, "newPost", "newContent");
+        Post savedPost = postRepository.save(post);
+
+        Hit Hit = new Hit(savedPost, 1);
+        Hit savedHit = hitRepository.save(Hit);
+        Hit newHit = hitRepository.findById(savedHit.getId()).get();
+
+        assertEquals("newPost", newHit.getPost().getTitle());
+    }
+
+    @Test
+    @Order(2)
     public void findHitById() {
         Optional<Hit> hit = hitRepository.findById(1);
         assertNotNull(hit.get());
     }
 
     @Test
-    @Order(2)
+    @Order(3)
     public void findAllHits() {
         List<Hit> hits = hitRepository.findAll();
         assertNotNull(hits);
     }
 
     @Test
-    @Order(3)
-    public void createHit() {
-        User user = userRepository.findAll().get(1);
-        Post post = new Post(user, "newPost", "newContent");
-        Post savedPost = postRepository.save(post);
-        Post newPost = postRepository.findById(savedPost.getId()).get();
-
-        Hit Hit = new Hit(newPost, 1);
-        Hit savedHit = hitRepository.save(Hit);
-        Hit newHit = hitRepository.findById(savedHit.getId()).get();
-
-        assertEquals("newPost", newHit.getPost().getTitle());
+    @Order(4)
+    public void updateHit() {
+        Optional<Hit> hit = hitRepository.findById(1);
+        hit.ifPresent( currentHit -> {
+            currentHit.setCount(currentHit.getCount() + 1);
+            hitRepository.save(currentHit);
+        });
+        assertEquals(2, hit.get().getCount());
     }
 
 }

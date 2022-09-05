@@ -1,7 +1,8 @@
 package com.hyntato.blog;
 
-import com.hyntato.blog.entity.*;
-import com.hyntato.blog.repository.CommentRepository;
+import com.hyntato.blog.entity.LikePost;
+import com.hyntato.blog.entity.Post;
+import com.hyntato.blog.entity.User;
 import com.hyntato.blog.repository.LikePostRepository;
 import com.hyntato.blog.repository.PostRepository;
 import com.hyntato.blog.repository.UserRepository;
@@ -31,29 +32,32 @@ public class LikePostRepositoryTest {
 
     @Test
     @Order(1)
+    public void createLikePost() {
+        User user = new User("hyntato", "hyntato@gamil.com");
+        User savedUser = userRepository.save(user);
+
+        Post post = new Post(savedUser, "hyntatoPost", "hyntatoContent");
+        Post savedPost = postRepository.save(post);
+
+        LikePost likePost = new LikePost(savedUser, savedPost);
+        LikePost savedLikePost = likePostRepository.save(likePost);
+        LikePost newLikePost = likePostRepository.findById(savedLikePost.getId()).get();
+
+        assertEquals("hyntato", newLikePost.getUser().getName());
+    }
+
+    @Test
+    @Order(2)
     public void findLikePostById() {
         Optional<LikePost> likePost = likePostRepository.findById(1);
         assertNotNull(likePost.get());
     }
 
     @Test
-    @Order(2)
+    @Order(3)
     public void findAllLikePosts() {
         List<LikePost> likePosts = likePostRepository.findAll();
         assertNotNull(likePosts);
-    }
-
-    @Test
-    @Order(3)
-    public void createLikePost() {
-        User user = userRepository.findAll().get(1);
-        Post post = postRepository.findAll().get(1);
-
-        LikePost likePost = new LikePost(user, post);
-        LikePost savedLikePost = likePostRepository.save(likePost);
-        LikePost newLikePost = likePostRepository.findById(savedLikePost.getId()).get();
-
-        assertEquals("user2", newLikePost.getUser().getName());
     }
 
 }

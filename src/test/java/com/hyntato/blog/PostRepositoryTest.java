@@ -28,22 +28,8 @@ public class PostRepositoryTest {
 
     @Test
     @Order(1)
-    public void findPostById() {
-        Optional<Post> post = postRepository.findById(1);
-        assertNotNull(post.get());
-    }
-
-    @Test
-    @Order(2)
-    public void findAllPosts() {
-        List<Post> posts = postRepository.findAll();
-        assertNotNull(posts);
-    }
-
-    @Test
-    @Order(3)
     public void createPost() {
-        User user = new User("hyntato2", "hyntato2@gamil.com");
+        User user = new User("hyntato", "hyntato@gamil.com");
         User savedUser = userRepository.save(user);
 
         Post post = new Post(savedUser, "hyntatoPost", "hyntatoContent");
@@ -51,6 +37,32 @@ public class PostRepositoryTest {
         Post newPost = postRepository.findById(savedPost.getId()).get();
 
         assertEquals("hyntatoPost", newPost.getTitle());
+    }
+
+    @Test
+    @Order(2)
+    public void findPostById() {
+        Optional<Post> post = postRepository.findById(1);
+        assertNotNull(post.get());
+    }
+
+    @Test
+    @Order(3)
+    public void findAllPosts() {
+        List<Post> posts = postRepository.findAll();
+        assertNotNull(posts);
+    }
+
+    @Test
+    @Order(4)
+    public void updatePost() {
+        Optional<Post> post = postRepository.findById(1);
+        post.ifPresent( currentPost -> {
+            currentPost.setTitle("updateTitle");
+            currentPost.setContent("updateContent");
+            postRepository.save(currentPost);
+        });
+        assertEquals("updateTitle", post.get().getTitle());
     }
 
 }

@@ -32,33 +32,43 @@ public class CommentRepositoryTest {
 
     @Test
     @Order(1)
+    public void createComment() {
+        User user = new User("hyntato", "hyntato@gamil.com");
+        User savedUser = userRepository.save(user);
+
+        Post post = new Post(user, "hyntatoPost", "hyntatoContent");
+        Post savedPost = postRepository.save(post);
+
+        Comment comment = new Comment(savedUser, savedPost, "newComment", false);
+        Comment savedComment = commentRepository.save(comment);
+        Comment newComment = commentRepository.findById(savedComment.getId()).get();
+
+        assertEquals("newComment", newComment.getContent());
+    }
+
+    @Test
+    @Order(2)
     public void findCommentById() {
         Optional<Comment> comment = commentRepository.findById(1);
         assertNotNull(comment.get());
     }
 
     @Test
-    @Order(2)
+    @Order(3)
     public void findAllComments() {
         List<Comment> comments = commentRepository.findAll();
         assertNotNull(comments);
     }
 
     @Test
-    @Order(3)
-    public void createComment() {
-        User user = new User("hyntato3", "hyntato3@gamil.com");
-        User savedUser = userRepository.save(user);
-
-        Post post = new Post(user, "hyntatoPost2", "hyntatoContent2");
-        Post savedPost = postRepository.save(post);
-
-        List<Comment> comments = commentRepository.findAll();
-        Comment comment = new Comment(savedUser, savedPost, comments.get(0), "comment6", true);
-        Comment savedComment = commentRepository.save(comment);
-        Comment newComment = commentRepository.findById(savedComment.getId()).get();
-
-        assertEquals("comment6", newComment.getContent());
+    @Order(4)
+    public void updateComment() {
+        Optional<Comment> comment = commentRepository.findById(1);
+        comment.ifPresent( currentComment -> {
+            currentComment.setContent("updateContent");
+            commentRepository.save(currentComment);
+        });
+        assertEquals("updateContent", comment.get().getContent());
     }
 
 }

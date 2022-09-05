@@ -24,26 +24,37 @@ class UserRepositoryTest {
 
     @Test
     @Order(1)
+    public void createUser() {
+        User user = new User("hyntato", "hyntato@gamil.com");
+        User savedUser = userRepository.save(user);
+        User newUser = userRepository.findById(savedUser.getId()).get();
+        assertEquals("hyntato", newUser.getName());
+    }
+
+    @Test
+    @Order(2)
     public void findUserById() {
         Optional<User> user = userRepository.findById(1);
         assertNotNull(user.get());
     }
 
     @Test
-    @Order(2)
+    @Order(3)
     public void findAllUsers() {
         List<User> users = userRepository.findAll();
         assertNotNull(users);
     }
 
     @Test
-    @Order(3)
-    public void createUser() {
-        User user = new User("hyntato", "hyntato@gamil.com");
-        User savedUser = userRepository.save(user);
-
-        User newUser = userRepository.findById(savedUser.getId()).get();
-        assertEquals("hyntato", newUser.getName());
+    @Order(4)
+    public void updateUser() {
+        Optional<User> user = userRepository.findById(4);
+        user.ifPresent( currentUser -> {
+            currentUser.setName("updateName");
+            currentUser.setEmail("updateEmail");
+            userRepository.save(currentUser);
+        });
+        assertEquals("updateName", user.get().getName());
     }
 
 }
